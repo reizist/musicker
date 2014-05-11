@@ -33,6 +33,11 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-#railsAdmin
+# railsAdmin
 gem 'devise'
 gem 'rails_admin'
+
+# bootstrap
+gem 'bootstrap-sass'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
