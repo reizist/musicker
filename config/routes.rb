@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :songs
+
+  resources :playlists
+
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :users
