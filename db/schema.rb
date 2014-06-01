@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 20140511075553) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "lastfm_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "screen_name"
     t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.string   "password_confirmation"
+    t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
