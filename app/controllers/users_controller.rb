@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+class UsersController < BaseController
+  before_action :confirm_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+
   end
 
   # GET /users/new
@@ -62,6 +63,13 @@ class UsersController < ApplicationController
   end
 
   private
+    def confirm_user
+      if sign_in?
+        set_user
+      else
+        redirect_to root_path, notice: 'Please sign in.'
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

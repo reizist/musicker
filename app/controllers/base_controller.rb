@@ -9,6 +9,10 @@ class BaseController < ApplicationController
 
   end
 
+  def sign_in?
+    !@current_user.nil?
+  end
+
   helper_method :current_user
 
   private
