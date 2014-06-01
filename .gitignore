@@ -18,3 +18,4 @@ bundle_bin
 
 vendor/bundle
 .secret
+.DS_Store
