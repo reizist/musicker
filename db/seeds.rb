@@ -10,11 +10,3 @@ AdminUser.find_or_create_by!( email: 'admin@example.com') do |u|
   u.password = "password"
   u.password_confirmation = "password"
 end
-
-User.find_or_create_by!( email: 'admin@example.com') do |u|
-  u.lastfm_id = "reiji16g"
-  u.name = "SampleUser"
-  u.email = "admin@example.com"
-  u.password = "password"
-  u.password_confirmation = "password"
-end

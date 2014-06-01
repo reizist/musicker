@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/signup',  to: 'users#new',            via: 'get'
+  match "/auth/:provider/callback", to: "sessions#create", via: 'get'
+  match "/signout", to: "sessions#destroy", via: 'get'
 
   resources :songs
 
   resources :playlists
+  resources :sessions, only: [:new, :create, :destroy]
 
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
