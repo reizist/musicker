@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
 
   resources :songs
 
   resources :playlists
+  resources :sessions, only: [:new, :create, :destroy]
 
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
