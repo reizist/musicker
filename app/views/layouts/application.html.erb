@@ -2,23 +2,31 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <title>Musicker</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% unless notice.nil? %>
+  <div class="notice alert alert-info"><%= notice %></div>
+  <% end %>
+
+  <% unless alert.nil? %>
+  <div class="alert alert-danger"><%= alert %></div>
+  <% end %>
 
   <%= render 'layouts/header' %>
-  <div class="container">
-    <%= yield %>
-  <%= render 'layouts/footer' %>
+  <%= yield %>
+  <%= render 'layouts/contact' %>
+  <%#= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
-  </div>
 
 </body>
 </html>

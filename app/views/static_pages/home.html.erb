@@ -1,3 +1,17 @@
 <% provide(:title, 'Home') %>
-
+<section class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">Musicker</h1>
+                    <p class="intro-text">This is the Last.fm client. You can share your favorite songs playlist.</p>
+                    <div class="page-scroll">
+                      <%= link_to "Sign up", '/auth/lastfm', class: "btn btn-circle" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <%#= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
