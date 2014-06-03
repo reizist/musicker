@@ -14,5 +14,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  BASE_URL = 'http://ws.audioscrobbler.com/2.0/?'
+
+  def get_user_info
+    url = "http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=#{self.uid}&api_key=f2021dbda43cd3fcf835dfd607c03124&format=json"
+    JsonParser::parse(url)
+  end
+
+  def get_recent_songs
+    url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{self.uid}&api_key=f2021dbda43cd3fcf835dfd607c03124&format=json"
+    JsonParser::parse(url)
+  end
 
 end
