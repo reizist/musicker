@@ -1,27 +1,47 @@
+<div id="main">
 <div class="container-fluid">
-  <p id="notice"><%= notice %></p>
+<%= render 'layouts/info' %>
 
   <!--left-->
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     	<div class="panel panel-default">
          	<div class="panel-heading">Profile</div>
          	<div class="panel-body">
-             <%= image_tag(@user.icon, size: '100x100') %>
-             <p><small><%= @user.uid %></small></p>
+               <%= image_tag(@user.icon, size: '100x100') %>
+             <div class="prof-body">
+               <p><small><%= @user.uid %></small></p>
+               <p><small>age:<%= @info["user"]["age"] %></small></p>
+               <p><small>gender:<%= @info["user"]["gender"] %></small></p>
+               <p><small>country:<%= @info["user"]["country"] %></small></p>
+               <p><small>playcount:<%= @info["user"]["playcount"] %></small></p>
+             </div>
            </div>
       </div>
         <hr>
         <div class="panel panel-default">
-         	<div class="panel-heading">Title</div>
-         	<div class="panel-body">Content here..</div>
+         	<div class="panel-heading">Recent playing</div>
+         	<div class="panel-body">
+             <% @recent_songs["recenttracks"]["track"].each do |track| %>
+               <p><%= track["name"] %> - <%= track["artist"]["#text"] %></p>
+             <% end %>
+           </div>
         </div>
         <hr>
         <div class="panel panel-default">
-         	<div class="panel-heading">Title</div>
-         	<div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-            Aliquam in felis sit amet augue.</div>
+         	<div class="panel-heading">Playlists<span style="float:right;"><%= link_to '', id: "admin_playlist" do %><%= glyph(:pencil) %>登録<% end %></span></div>
+         	<div class="panel-body">
+             <% unless @user.playlists.present? %>
+               You have not playlist.
+             <% else %>
+               <div class="list-group">
+                 <% @user.playlists.each do |playlist| %>
+                 <a href="<%= playlist_path(playlist) %>" class="list-group-item">
+                   <%= glyph(:music) %><%= playlist.list_name %><span class="badge"><%= [*1..10].sample %></span>
+                 </a>
+                 <% end %>
+               </div>
+             <% end %>
+          </div>
         </div>
         <hr>
         <div class="panel panel-default">
@@ -32,44 +52,19 @@
   </div><!--/left-->
 
   <!--center-->
-  <div class="col-sm-9">
+  <div class="col-sm-8">
     <div class="row">
-      <div class="col-xs-12">
-        <h2>Article Heading</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-          Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-          dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-          Aliquam in felis sit amet augue.</p>
-        <p class="lead"><button class="btn btn-default">Read More</button></p>
-        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
-        <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 14 Shares</a></li></ul>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-xs-12">
-        <h2>Article Heading</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-          Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-          dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-          Aliquam in felis sit amet augue.</p>
-        <p class="lead"><button class="btn btn-default">Read More</button></p>
-        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
-        <ul class="list-inline"><li><a href="#">4 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 7 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 56 Shares</a></li></ul>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-xs-12">
-        <h2>Article Heading</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-          Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-          dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-          Aliquam in felis sit amet augue.</p>
-        <p class="lead"><button class="btn btn-default">Read More</button></p>
-        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
-        <ul class="list-inline"><li><a href="#">1 Week Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
-      </div>
+      <%# @songs.each do |song| %>
+
+        <div class="col-xs-12">
+          <h2>Article Heading</h2>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/h5EofwRzit0" frameborder="0" allowfullscreen></iframe>
+          <p class="lead"><button class="btn btn-default">Read More</button></p>
+          <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+          <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 14 Shares</a></li></ul>
+        </div>
+      <%# end %>
     </div>
     <hr>
   </div><!--/center-->
+</div>
