@@ -1,4 +1,4 @@
-class PlaylistsController < ApplicationController
+class PlaylistsController < BaseController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
   # GET /playlists

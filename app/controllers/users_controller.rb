@@ -10,7 +10,8 @@ class UsersController < BaseController
   # GET /users/1
   # GET /users/1.json
   def show
-
+    @info = @user.get_user_info
+    @recent_songs = @user.get_recent_songs
   end
 
   # GET /users/new
@@ -64,7 +65,7 @@ class UsersController < BaseController
 
   private
     def confirm_user
-      if sign_in?
+      if session[:user_id]
         set_user
       else
         redirect_to root_path, notice: 'Please sign in.'
