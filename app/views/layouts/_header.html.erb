@@ -4,7 +4,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="#page-top">
+            <a class="navbar-brand" href="<%= root_path %>"
                 <i class="fa fa-play-circle"></i>  <span class="light">Musicker</span>
             </a>
         </div>
@@ -17,7 +17,7 @@
                     <a href="#page-top"></a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#about">About</a>
+                    <%= link_to "About", about_path %>
                 </li>
                 <li class="page-scroll <% if current_user %>dropdown<% end %>">
                   <% if current_user %>
@@ -26,6 +26,7 @@
                     </a>
                     <%#= link_to image_tag(current_user.icon, size: '24x24'), signout_path, class: "dropdown-toggle" %>
                       <ul class="dropdown-menu">
+                        <li><%= link_to user_path(current_user) do %><%= glyph(:music) %>UserPage<% end %></li>
                         <li><%= link_to '' do %><%= glyph(:cog) %>Settings<% end %></li>
                         <li><%= link_to signout_path do %><%= glyph(:user) %>Logout<% end %></li>
                       </ul>
@@ -41,25 +42,3 @@
     </div>
     <!-- /.container -->
 </nav>
-
-<!--
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "sample app", root_path , id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "Help",    help_path %></li>
-          <li><% if current_user %>
-            <%= image_tag current_user.icon, size: '24x24' %> <%= link_to 'ログアウト', signout_path %>
-          <% else %>
-            <%= link_to 'ログイン', '/auth/lastfm' %>
-          <% end %>
-        </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
--->
