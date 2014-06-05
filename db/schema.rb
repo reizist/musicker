@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511075553) do
+ActiveRecord::Schema.define(version: 20140605112502) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20140511075553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "song_entries", force: true do |t|
+    t.integer  "playlist_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "song_entries", ["playlist_id"], name: "index_song_entries_on_playlist_id", using: :btree
+  add_index "song_entries", ["song_id"], name: "index_song_entries_on_song_id", using: :btree
 
   create_table "songs", force: true do |t|
     t.string   "artist_name"
