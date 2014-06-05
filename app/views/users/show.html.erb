@@ -54,16 +54,20 @@
   <!--center-->
   <div class="col-sm-8">
     <div class="row">
-      <%# @songs.each do |song| %>
+      <% @playlist.songs.each do |song| %>
 
         <div class="col-xs-12">
           <h2>Article Heading</h2>
-          <iframe width="560" height="315" src="//www.youtube.com/embed/h5EofwRzit0" frameborder="0" allowfullscreen></iframe>
+          <p>
+            <%= song.artist_name %> - <%= song.song_name %>
+          </p>
+          <%= iframe_link("C6MOKXm8x50").html_safe %>
+
           <p class="lead"><button class="btn btn-default">Read More</button></p>
           <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
           <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 2 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 14 Shares</a></li></ul>
         </div>
-      <%# end %>
+      <% end %>
     </div>
     <hr>
   </div><!--/center-->
