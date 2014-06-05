@@ -1,4 +1,5 @@
 class BaseController < ApplicationController
+  include CallAPI
   protect_from_forgery
   def login_required
     if session[:user_id]
