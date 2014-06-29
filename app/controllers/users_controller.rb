@@ -12,6 +12,7 @@ class UsersController < BaseController
   def show
     @info = @user.get_user_info
     @recent_songs = @user.get_recent_songs
+    @playlist = @user.playlists.first
   end
 
   # GET /users/new

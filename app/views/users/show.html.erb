@@ -28,14 +28,14 @@
         </div>
         <hr>
         <div class="panel panel-default">
-         	<div class="panel-heading">Playlists<span style="float:right;"><%= link_to '', id: "admin_playlist" do %><%= glyph(:pencil) %>登録<% end %></span></div>
+         	<div class="panel-heading">Playlists<span style="float:right;"><a href="", id: "admin_playlist", data-toggle="modal" data-target=".bs-example-modal-sm"><%= glyph(:pencil) %>登録</a></span></div>
          	<div class="panel-body">
              <% unless @user.playlists.present? %>
                You have not playlist.
              <% else %>
                <div class="list-group">
                  <% @user.playlists.each do |playlist| %>
-                 <a href="<%= playlist_path(playlist) %>" class="list-group-item">
+                 <a href="<%= new_playlist_path(playlist) %>" class="list-group-item">
                    <%= glyph(:music) %><%= playlist.list_name %><span class="badge"><%= playlist.songs.count %></span>
                  </a>
                  <% end %>
@@ -71,4 +71,14 @@
     </div>
     <hr>
   </div><!--/center-->
+
+  <!-- test modal -->
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <%#= render 'playlists/add_songs' %>
+    </div>
+  </div>
+</div>
+  <!-- test modal end -->ß
 </div>
